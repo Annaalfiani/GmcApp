@@ -10,6 +10,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+    flavorDimensions "mode"
     defaultConfig {
         applicationId "com.annaalfiani.gmcapps"
         minSdkVersion 22
@@ -17,6 +18,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    productFlavors {
+        sandBox {
+            applicationId "com.travelme.customer"
+            buildConfigField "String", "CLIENT_KEY", '"SB-Mid-client-dbTr9AxiYaspFEzx"'
+        }
     }
     buildTypes {
         release {
@@ -66,6 +73,7 @@ dependencies {
     implementation 'com.github.murgupluoglu:seatview-android:1.0.0'
 
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
+    implementation 'com.midtrans:uikit:1.21.2-SANDBOX'
 
     //sectioned
     implementation 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:3.2.0'

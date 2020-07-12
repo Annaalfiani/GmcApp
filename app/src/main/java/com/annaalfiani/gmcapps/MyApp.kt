@@ -43,5 +43,5 @@ val viewModelModule = module {
     viewModel { ProfileViewModel(get()) }
     viewModel { SignInViewModel(get()) }
     viewModel { DetailViewModel(get()) }
-    viewModel { OrderViewModel(get(), get(), get()) }
+    viewModel { OrderViewModel(get(), get(), get(), get()) }
 }

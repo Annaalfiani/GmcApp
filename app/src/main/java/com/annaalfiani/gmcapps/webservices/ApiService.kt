@@ -10,7 +10,7 @@ interface ApiService {
     @POST("api/login")
     fun login(@Field("email") email: String, @Field("password")passord : String): Call<WrappedResponse<User>>
 
-    @GET("api/profile")
+    @GET("api/profil")
     fun profile(@Header("Authorization") token : String) : Call<WrappedResponse<User>>
 
     @GET("api/film")

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import coil.api.load
@@ -21,16 +22,17 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class OrderActivity : AppCompatActivity() {
     private val orderViewModel : OrderViewModel by viewModel()
     private var restrucutureSeat : ArrayList<Seat> = arrayListOf()
+    private val midtrans  = PaymentMidtrans()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order)
         setSupportActionBar(toolbar)
         setupToolbar()
+        orderViewModel.fetchProfile("Bearer ${Utilities.getToken(this@OrderActivity)}")
         fill()
         observe()
         fetchSeats()
-        createOrder()
     }
 
     private fun setupToolbar(){
@@ -50,11 +52,33 @@ class OrderActivity : AppCompatActivity() {
         observeState()
         observeSeats()
         observeSelectedSeats()
+        observeUser()
     }
 
     private fun observeSeats() = orderViewModel.getSeats().observe(this, Observer { handleSeats(it) })
     private fun observeState() = orderViewModel.getState().observer(this, Observer { handleState(it) })
     private fun observeSelectedSeats() = orderViewModel.getSelectedSeats().observe(this, Observer { handleSelectedSeats(it)})
+    private fun observeUser() = orderViewModel.getUser().observe(this, Observer { HandleUser(it) })
+
+    private fun HandleUser(user: User) {
+        val token = Utilities.getToken(this@OrderActivity)
+        val order = CreateOrder(
+            id_studio = getPassedSchedule()?.studio!!.id,
+            id_film = getPassedMovie()?.id,
+            id_jadwal_tayang = getPassedSchedule()?.id,
+            tanggal = getPassedSchedule()?.date,
+            jam = getPassedSchedule()?.hour,
+            harga = getPassedSchedule()?.price,
+            seats = restrucutureSeat
+        )
+
+        midtrans.initPayment(this@OrderActivity, token!!, order, orderViewModel)
+        btn_order.setOnClickListener {
+            val _harga = getPassedSchedule()?.price
+            val _film = getPassedMovie()?.judul
+            midtrans.showPayment(this@OrderActivity, user.id.toString(), _harga!!, restrucutureSeat.count(), _film!!)
+        }
+    }
 
     private fun handleState(it: OrderState){
         when(it){
@@ -107,21 +131,21 @@ class OrderActivity : AppCompatActivity() {
         }
     }
 
-    private fun createOrder(){
-        btn_order.setOnClickListener {
-            val token = Utilities.getToken(this@OrderActivity)
-            val order = CreateOrder(
-                id_studio = getPassedSchedule()?.studio!!.id,
-                id_film = getPassedMovie()?.id,
-                id_jadwal_tayang = getPassedSchedule()?.id,
-                tanggal = getPassedSchedule()?.date,
-                jam = getPassedSchedule()?.hour,
-                harga = getPassedSchedule()?.price,
-                seats = restrucutureSeat
-            )
-            orderViewModel.createOrder(token!!, order)
-        }
-    }
+//    private fun createOrder(){
+//        btn_order.setOnClickListener {
+//            val token = Utilities.getToken(this@OrderActivity)
+//            val order = CreateOrder(
+//                id_studio = getPassedSchedule()?.studio!!.id,
+//                id_film = getPassedMovie()?.id,
+//                id_jadwal_tayang = getPassedSchedule()?.id,
+//                tanggal = getPassedSchedule()?.date,
+//                jam = getPassedSchedule()?.hour,
+//                harga = getPassedSchedule()?.price,
+//                seats = restrucutureSeat
+//            )
+//            orderViewModel.createOrder(token!!, order)
+//        }
+//    }
 
     private fun getPassedSchedule() = intent.getParcelableExtra<MovieSchedule>("SCHEDULE")
     private fun getPassedMovie() = intent.getParcelableExtra<Movie>("FILM")
