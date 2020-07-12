@@ -1,0 +1,44 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.select_seat.SeatActivity">
+
+    <com.murgupluoglu.seatview.SeatView
+        xmlns:seatview="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/seatView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        seatview:centerLineActive="true"
+        seatview:centerLineColor="#e600ff"
+        seatview:centerLineWidth="2.8"
+        seatview:cinemaScreenViewActive="true"
+        seatview:cinemaScreenViewBackgroundColor="#F44336"
+        seatview:cinemaScreenViewSide="top"
+        seatview:cinemaScreenViewText="Cinema Screen"
+        seatview:cinemaScreenViewTextColor="#ffffff"
+        seatview:seatNamesBarActive="true"
+        seatview:seatViewBackgroundColor="#000000"
+        seatview:thumbSeatViewActive="true"
+        seatview:thumbSeatViewBackgroundColor="#bcb295"
+        seatview:thumbSeatViewPointerColor="#ffee00"
+        seatview:thumbSeatViewPointerWidth="10"
+        seatview:zoomActive="true"
+        seatview:zoomAfterClickActive="false" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:id="@+id/fab"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_appintro_done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="@dimen/margin_size_16"
+        android:layout_height="wrap_content"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

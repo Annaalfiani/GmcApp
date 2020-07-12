@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#649BE6</color>
+    <color name="colorPrimaryDark">#649BE6</color>
+    <color name="colorAccent">#005FE1</color>
+    <color name="colorPink">#D81B60</color>
+    <color name="calorDarkBlue">#08091D</color>
+    <color name="calorWhite">#FFFFFF</color>
+    <color name="calorBlue">#0F8BEF</color>
+    <color name="calorBlueGray">#292A50</color>
+    <color name="calorBlack">#050505</color>
+    <color name="colorWhiteGray">#EEEDED</color>
+    <color name="colorGray">#B4A3A3</color>
+    <color name="text_light_blue">#2196F3</color>
+    <color name="selected_seat_bg">#8F06BC00</color>
+    <color name="colorBlack">#1D1D1D</color>
+    <color name="colorWhite">#fff</color>
+</resources>
