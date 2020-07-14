@@ -35,6 +35,7 @@ class PaymentMidtrans {
                             }
                             TransactionResult.STATUS_SUCCESS -> {
                                 toast(context,"transaction is success")
+                                orderViewModel.createOrder(token, createOrder)
                                 //orderFragmentViewModel.updatestatus(Constants.getToken(context),id, "success")
                             }
                             TransactionResult.STATUS_INVALID -> {
