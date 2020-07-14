@@ -9,6 +9,7 @@ import com.annaalfiani.gmcapps.ui.detail_movie.DetailViewModel
 import com.annaalfiani.gmcapps.ui.login.SignInViewModel
 import com.annaalfiani.gmcapps.ui.main.home.HomeViewModel
 import com.annaalfiani.gmcapps.ui.main.profile.ProfileViewModel
+import com.annaalfiani.gmcapps.ui.main.ticket.TicketViewModel
 import com.annaalfiani.gmcapps.ui.order.OrderViewModel
 import com.annaalfiani.gmcapps.webservices.ApiCllient
 import org.koin.android.ext.koin.androidContext
@@ -44,4 +45,5 @@ val viewModelModule = module {
     viewModel { SignInViewModel(get()) }
     viewModel { DetailViewModel(get()) }
     viewModel { OrderViewModel(get(), get(), get(), get()) }
+    viewModel { TicketViewModel(get()) }
 }

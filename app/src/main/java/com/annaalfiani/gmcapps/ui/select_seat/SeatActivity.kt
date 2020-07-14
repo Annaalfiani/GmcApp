@@ -95,10 +95,8 @@ class SeatActivity : AppCompatActivity() {
             val letterPosition = getHashMapKeyByValue(i.nama_kursi.toString().split("-")[1])
             val numberOfSeat = i.nama_kursi.toString().split("-")[0]
             println(i.status.toString())
-            val drawable_res = i.nama_kursi
+            val drawable_res = if (i.status.toString().equals("available")){ "seat_available" }else{ "seat_notavailable"}
             val type_seat = if(i.status.toString().equals("available")) {Seat.TYPE.SELECTABLE} else {Seat.TYPE.UNSELECTABLE}
-
-            print("drawable $drawable_res")
             val movieSeat = Seat().apply {
                 id = i.id.toString()
                 rowName = i.nama_kursi.toString().substring(0, 1)

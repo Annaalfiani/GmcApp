@@ -24,8 +24,6 @@ class OrderRepository(private val api : ApiService) : OrderContract {
 
     override fun createOrder(token: String, createOrder: CreateOrder, listener: SingleResponse<CreateOrder>) {
         val json = Gson().toJson(createOrder)
-        println("ini json ${json}")
-        println("token $token")
         val body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json)
         api.order("Bearer $token", body).enqueue(object : Callback<WrappedResponse<CreateOrder>>{
             override fun onFailure(call: Call<WrappedResponse<CreateOrder>>, t: Throwable) = listener.onFailure(Error(t.message))
@@ -56,6 +54,7 @@ class OrderRepository(private val api : ApiService) : OrderContract {
                     response.isSuccessful -> {
                         val body = response.body()
                         if (body?.status!!){
+                            println(body.data)
                             listener.onSuccess(body.data)
                         }else{
                             listener.onFailure(Error())

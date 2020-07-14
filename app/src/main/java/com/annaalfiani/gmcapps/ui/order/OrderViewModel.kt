@@ -30,9 +30,9 @@ class OrderViewModel (private val movieRepo: MovieRepository,
     private fun successOrder(){ state.value = OrderState.SuccessOrder }
 
 
-    fun fetchSeats(token: String, date: String, hour: String, studioId : String){
+    fun fetchSeats(token: String, moviedId: String, studioId : String, date: String, hour: String ){
         setLoading()
-        seatRepository.getAvailableSeats(token, studioId, hour, date, object : SingleResponse<Kursi>{
+        seatRepository.getAvailableSeats(token, moviedId, studioId, date, hour, object : SingleResponse<Kursi>{
             override fun onSuccess(data: Kursi?) {
                 hideLoading()
                 data?.let {

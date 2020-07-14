@@ -2,12 +2,14 @@ package com.annaalfiani.gmcapps.ui.main.ticket
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.annaalfiani.gmcapps.R
 import com.annaalfiani.gmcapps.models.OrderDetails
+import com.annaalfiani.gmcapps.ui.detail_ticket.DetailTicketActivity
 import kotlinx.android.synthetic.main.list_item_ticket.view.*
 
 
@@ -29,6 +31,11 @@ class TicketAdapter (private var orderDetails: MutableList<OrderDetails>, privat
                 film_name.text = orderDetails.order.film.judul
                 schedule.text = "${orderDetails.order.tanggal} ${orderDetails.order.jam}"
                 studio_name.text = orderDetails.order.studio.nama
+                setOnClickListener {
+                    context.startActivity(Intent(context, DetailTicketActivity::class.java).apply {
+                        putExtra("ORDER_DETAILS", orderDetails)
+                    })
+                }
             }
         }
     }

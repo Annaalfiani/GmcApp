@@ -30,8 +30,11 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("api/seat/available")
-    fun availableSeat(@Header("Authorization") token: String, @Field("tanggal") date : String,
-                      @Field("jam")hour : String, @Field("id_studio") studioId: String)
+    fun availableSeat(@Header("Authorization") token: String,
+                      @Field("id_film") movieId: String,
+                      @Field("id_studio") studioId: String,
+                      @Field("tanggal") date : String,
+                      @Field("jam")hour : String)
             : Call<WrappedResponse<Kursi>>
 
     @Headers("Content-Type: application/json")

@@ -42,11 +42,14 @@ class OrderActivity : AppCompatActivity() {
     }
 
     private fun fetchSeats(){
-        Utilities.getToken(this)?.let { orderViewModel.fetchSeats(it,
-            getPassedSchedule()?.date.toString(),
-            getPassedSchedule()?.hour.toString(),
-            getPassedSchedule()?.studio?.id.toString()
-        ) }
+        Utilities.getToken(this)?.let {
+            orderViewModel.fetchSeats(it,
+                getPassedMovie()?.id.toString(),
+                getPassedSchedule()?.studio?.id.toString(),
+                getPassedSchedule()?.date.toString(),
+                getPassedSchedule()?.hour.toString()
+            )
+        }
     }
 
     private fun observe(){
@@ -111,7 +114,7 @@ class OrderActivity : AppCompatActivity() {
 
     private fun fill(){
         getPassedMovie()?.let {
-            order_movie_poster.load("https://www.greenscene.co.id/wp-content/uploads/2020/04/Money-Heist-1.jpg")
+            order_movie_poster.load(it.foto)
             order_movieName_textView.text = it.judul
             order_date_textView.text = getPassedSchedule()?.date.toString()
             order_hour_textView.text = getPassedSchedule()?.hour.toString()

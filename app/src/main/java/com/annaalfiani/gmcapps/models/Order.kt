@@ -22,6 +22,7 @@ data class Order(
     @SerializedName("id") var id : Int? = null,
     @SerializedName("studio") var studio : Studio,
     @SerializedName("film") var film : Movie,
+    @SerializedName("jadwal_tayang") var jadwal: Jadwal,
     @SerializedName("tanggal") var tanggal : String? = null,
     @SerializedName("jam") var jam : String ? = null,
     @SerializedName("harga") var harga : Int ? = null

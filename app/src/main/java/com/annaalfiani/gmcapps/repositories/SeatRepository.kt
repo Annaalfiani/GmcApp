@@ -9,12 +9,18 @@ import retrofit2.Callback
 import retrofit2.Response
 
 interface SeatContract {
-    fun getAvailableSeats(token: String, studioId: String, hour: String, date: String, listener: SingleResponse<Kursi>)
+    fun getAvailableSeats(token: String,
+                          movieId: String,
+                          studioId: String,
+                          date: String,
+                          hour: String,
+                          listener: SingleResponse<Kursi>)
 }
 
 class SeatRepository (private val api: ApiService) : SeatContract {
-    override fun getAvailableSeats(token: String, studioId: String, hour: String, date: String, listener: SingleResponse<Kursi>) {
-        api.availableSeat(token, date, hour, studioId).enqueue(object: Callback<WrappedResponse<Kursi>>{
+
+    override fun getAvailableSeats(token: String,movieId : String, studioId: String, date: String, hour: String, listener: SingleResponse<Kursi>) {
+        api.availableSeat(token, movieId, studioId, date, hour).enqueue(object: Callback<WrappedResponse<Kursi>>{
             override fun onFailure(call: Call<WrappedResponse<Kursi>>, t: Throwable) = listener.onFailure(Error(t.message))
 
             override fun onResponse(call: Call<WrappedResponse<Kursi>>, response: Response<WrappedResponse<Kursi>>) {

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail_ticket.DetailTicketActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:elevation="2dp"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="8dp"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_poster_image"
+                    android:layout_width="70dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="15dp">
+
+                    <ImageView
+                        android:id="@+id/iv_poster_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/posterbumimanusia" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:text="Bimi Manusia"
+                    android:layout_toEndOf="@id/card_poster_image"
+                    android:id="@+id/txt_judul"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txt_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="ggenre"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:layout_toEndOf="@id/card_poster_image"
+                    android:layout_below="@id/txt_judul"/>
+
+                <LinearLayout
+                    android:id="@+id/linear_date"
+                    android:layout_below="@id/card_poster_image"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/label_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:drawableStart="@drawable/ic_calendar_today"
+                        android:drawablePadding="10dp"
+                        android:text="Tanggal"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txt_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="12 Aug, 10 AM"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_hour"
+                    android:layout_below="@id/linear_date"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/label_hour"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:drawableStart="@drawable/ic_access_time"
+                        android:drawablePadding="10dp"
+                        android:text="Jam"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txt_hour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="12 Aug, 10 AM"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_cinema"
+                    android:layout_below="@id/linear_hour"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/label_cinema"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:drawableStart="@drawable/ic_local_movies"
+                        android:drawablePadding="10dp"
+                        android:text="@string/cinema"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txt_cinema"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="Depok Mall, Cinema 3"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_kursi"
+                    android:layout_below="@id/linear_cinema"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_kursi"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:drawablePadding="10dp"
+                        android:text="kursi"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txt_harga"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="20000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_below="@id/linear_kursi"
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape_line"
+                    android:layerType="software" />
+
+                <RelativeLayout
+                    android:background="@color/colorAlwaysWhite"
+                    android:layout_below="@id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/qrcode_imageView"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_barcode"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
+
+
+
+
+</ScrollView>

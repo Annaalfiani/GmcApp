@@ -77,7 +77,7 @@ class DetailActivity : AppCompatActivity(), DetailMovieInterface {
     }
 
     private fun fill(movie: Movie){
-        detail_movie_img.load("https://www.greenscene.co.id/wp-content/uploads/2020/04/Money-Heist-1.jpg")
+        detail_movie_img.load(movie.foto)
         detail_movie_title.text = movie.judul
         detail_movie_genre.text = movie.genre
         sinopsis.text = movie.sinopsis
