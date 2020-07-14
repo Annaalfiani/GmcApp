@@ -89,21 +89,29 @@ class SeatActivity : AppCompatActivity() {
 
     private fun transformData(seatArray: Array<Array<Seat>>, rowNames: HashMap<String, String>, rowArray: List<com.annaalfiani.gmcapps.models.Seat>, rowCount: Int, columnCount: Int): Array<Array<Seat>>{
         saveRowNames()
-        for (i in rowArray.indices){
-            val letterPosition = getHashMapKeyByValue(rowArray[i].nama_kursi.toString().split("-")[1])
-            val numberOfSeat = rowArray[i].nama_kursi.toString().split("-")[0]
+        var x = 0
+        for (i in rowArray){
+            println(x)
+            val letterPosition = getHashMapKeyByValue(i.nama_kursi.toString().split("-")[1])
+            val numberOfSeat = i.nama_kursi.toString().split("-")[0]
+            println(i.status.toString())
+            val drawable_res = i.nama_kursi
+            val type_seat = if(i.status.toString().equals("available")) {Seat.TYPE.SELECTABLE} else {Seat.TYPE.UNSELECTABLE}
+
+            print("drawable $drawable_res")
             val movieSeat = Seat().apply {
-                id = rowArray[i].id.toString()
-                rowName = rowArray[i].nama_kursi.toString().substring(0, 1)
+                id = i.id.toString()
+                rowName = i.nama_kursi.toString().substring(0, 1)
                 rowIndex = letterPosition.toInt()
                 columnIndex =  numberOfSeat.toInt()
                 isSelected = false
-                type = if(rowArray[i].status.equals("available")) Seat.TYPE.SELECTABLE else Seat.TYPE.UNSELECTABLE
-                seatName = rowArray[i].nama_kursi.toString()
-                drawableResourceName = "seat_available"
+                type = type_seat
+                seatName = i.nama_kursi.toString()
+                drawableResourceName = drawable_res
                 selectedDrawableResourceName = "seat_selected"
             }
             seatArray[letterPosition.toInt()][numberOfSeat.toInt()-1] = movieSeat
+            x++
         }
         return seatArray
     }

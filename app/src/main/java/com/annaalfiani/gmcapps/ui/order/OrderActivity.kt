@@ -23,6 +23,7 @@ class OrderActivity : AppCompatActivity() {
     private val orderViewModel : OrderViewModel by viewModel()
     private var restrucutureSeat : ArrayList<Seat> = arrayListOf()
     private val midtrans  = PaymentMidtrans()
+    private lateinit var user : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,25 +61,7 @@ class OrderActivity : AppCompatActivity() {
     private fun observeSelectedSeats() = orderViewModel.getSelectedSeats().observe(this, Observer { handleSelectedSeats(it)})
     private fun observeUser() = orderViewModel.getUser().observe(this, Observer { HandleUser(it) })
 
-    private fun HandleUser(user: User) {
-        val token = Utilities.getToken(this@OrderActivity)
-        val order = CreateOrder(
-            id_studio = getPassedSchedule()?.studio!!.id,
-            id_film = getPassedMovie()?.id,
-            id_jadwal_tayang = getPassedSchedule()?.id,
-            tanggal = getPassedSchedule()?.date,
-            jam = getPassedSchedule()?.hour,
-            harga = getPassedSchedule()?.price,
-            seats = restrucutureSeat
-        )
-
-        midtrans.initPayment(this@OrderActivity, token!!, order, orderViewModel)
-        btn_order.setOnClickListener {
-            val _harga = getPassedSchedule()?.price
-            val _film = getPassedMovie()?.judul
-            midtrans.showPayment(this@OrderActivity, user.id.toString(), _harga!!, restrucutureSeat.count(), _film!!)
-        }
-    }
+    private fun HandleUser(it: User) { user = it.id.toString() }
 
     private fun handleState(it: OrderState){
         when(it){
@@ -106,6 +89,11 @@ class OrderActivity : AppCompatActivity() {
 
     private fun selectSeatButtonClick(kursi: Kursi){
         order_button_select_seat.setOnClickListener {
+            println("id movie ${getPassedMovie().id.toString()}")
+            println("id hour ${getPassedSchedule().hour.toString()}")
+            println("id date ${getPassedSchedule().date.toString()}")
+            println("id studio ${getPassedSchedule().studio!!.id.toString()}")
+
             startActivityForResult(Intent(this@OrderActivity, SeatActivity::class.java).apply {
                 putExtra("seat_info", kursi)
             }, 89)
@@ -131,7 +119,25 @@ class OrderActivity : AppCompatActivity() {
         }
     }
 
-//    private fun createOrder(){
+    private fun createOrder(){
+        val token = Utilities.getToken(this@OrderActivity)
+        val order = CreateOrder(
+            id_studio = getPassedSchedule()?.studio!!.id,
+            id_film = getPassedMovie()?.id,
+            id_jadwal_tayang = getPassedSchedule()?.id,
+            tanggal = getPassedSchedule()?.date,
+            jam = getPassedSchedule()?.hour,
+            harga = getPassedSchedule()?.price,
+            seats = restrucutureSeat
+        )
+
+        midtrans.initPayment(this@OrderActivity, token!!, order, orderViewModel)
+        btn_order.setOnClickListener {
+            val _harga = getPassedSchedule()?.price
+            val _film = getPassedMovie()?.judul
+            midtrans.showPayment(this@OrderActivity, user, _harga!!, restrucutureSeat.count(), _film!!)
+        }
+
 //        btn_order.setOnClickListener {
 //            val token = Utilities.getToken(this@OrderActivity)
 //            val order = CreateOrder(
@@ -145,7 +151,7 @@ class OrderActivity : AppCompatActivity() {
 //            )
 //            orderViewModel.createOrder(token!!, order)
 //        }
-//    }
+    }
 
     private fun getPassedSchedule() = intent.getParcelableExtra<MovieSchedule>("SCHEDULE")
     private fun getPassedMovie() = intent.getParcelableExtra<Movie>("FILM")
@@ -164,6 +170,7 @@ class OrderActivity : AppCompatActivity() {
             }
             restrucutureSeat = selectedSeats!!
             btn_order.isEnabled = true
+            createOrder()
         }
     }
 }

@@ -41,4 +41,9 @@ interface ApiService {
         @Body body : RequestBody
     ) : Call<WrappedResponse<CreateOrder>>
 
+    @GET("api/order/show")
+    fun getMyOrders(
+        @Header("Authorization") token: String
+    ) : Call<WrappedListResponse<OrderDetails>>
+
 }

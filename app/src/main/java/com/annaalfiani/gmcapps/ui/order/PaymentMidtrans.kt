@@ -47,7 +47,6 @@ class PaymentMidtrans {
                     if(result.isTransactionCanceled) {
                         toast(context,"Transaction is cancelled")
                     }
-                    println(result.response.toString())
 
                 } ?: kotlin.run {
                     toast(context,"Response is null")
