@@ -33,6 +33,11 @@ class Utilities {
             return bool
         }
 
+        fun clearToken(context: Context){
+            val pref = context.getSharedPreferences("USER", MODE_PRIVATE)
+            pref.edit().clear().apply()
+        }
+
         fun setFirstTime(context: Context, value : Boolean){
             val pref = context.getSharedPreferences("UTILS", MODE_PRIVATE)
             pref.edit().apply{

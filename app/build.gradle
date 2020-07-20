@@ -21,7 +21,7 @@ android {
     }
     productFlavors {
         sandBox {
-            applicationId "com.travelme.customer"
+            applicationId "com.annaalfiani.gmcapps"
             buildConfigField "String", "CLIENT_KEY", '"SB-Mid-client-dbTr9AxiYaspFEzx"'
         }
     }

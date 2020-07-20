@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.annaalfiani.gmcapps.R
 import com.annaalfiani.gmcapps.ui.main.MainActivity
+import com.annaalfiani.gmcapps.ui.register.SignUpActivity
 import com.annaalfiani.gmcapps.utils.Utilities
 import com.annaalfiani.gmcapps.utils.extensions.showInfoAlert
 import com.annaalfiani.gmcapps.utils.extensions.toast
@@ -21,6 +22,8 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
         observe()
         doLogin()
+        btn_daftar.setOnClickListener { startActivity(Intent(this@SignInActivity, SignUpActivity::class.java)) }
+
     }
 
     private fun observe(){
@@ -45,6 +48,7 @@ class SignInActivity : AppCompatActivity() {
     private fun handleSuccess(token: String){
         Utilities.setToken(this@SignInActivity, token)
         setResult(Activity.RESULT_OK)
+        startActivity(Intent(this@SignInActivity, MainActivity::class.java))
         finish()
     }
 

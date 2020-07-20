@@ -10,8 +10,26 @@ interface ApiService {
     @POST("api/login")
     fun login(@Field("email") email: String, @Field("password")passord : String): Call<WrappedResponse<User>>
 
+    @FormUrlEncoded
+    @POST("api/register")
+    fun register(
+        @Field("name") name: String,
+        @Field("email")email : String,
+        @Field("password") password : String,
+        @Field("telp") telp : String
+    ): Call<WrappedResponse<User>>
+
     @GET("api/profil")
     fun profile(@Header("Authorization") token : String) : Call<WrappedResponse<User>>
+
+    @FormUrlEncoded
+    @POST("api/profil/update")
+    fun updateProfil(
+        @Header("Authorization") token : String,
+        @Field("name") name: String,
+        @Field("password") password: String,
+        @Field("telp") telp: String
+    ) : Call<WrappedResponse<User>>
 
     @GET("api/film")
     fun movies() : Call<WrappedListResponse<Movie>>

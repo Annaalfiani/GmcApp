@@ -14,10 +14,14 @@ import com.annaalfiani.gmcapps.utils.extensions.visible
 import com.annaalfiani.gmcapps.models.User
 import com.annaalfiani.gmcapps.ui.login.SignInActivity
 import com.annaalfiani.gmcapps.ui.main.MainActivity
+import com.annaalfiani.gmcapps.ui.register.SignUpActivity
+import com.annaalfiani.gmcapps.ui.update_profil.UpdateProfilActivity
 import com.annaalfiani.gmcapps.utils.Utilities
 import com.annaalfiani.gmcapps.utils.extensions.toast
 import kotlinx.android.synthetic.main.fragment_not_logged_in.view.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import kotlinx.android.synthetic.main.fragment_profile.view.tv_logout
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment(){
@@ -35,8 +39,17 @@ class ProfileFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         if(checkIsLoggedIn()){
             observe()
+            logout()
         }else{
             setupNotLoggedInView()
+        }
+    }
+
+    private fun logout(){
+        tv_logout.setOnClickListener {
+            Utilities.clearToken(activity!!)
+            startActivity(Intent(activity!!, SignInActivity::class.java))
+            activity!!.finish()
         }
     }
 
@@ -45,7 +58,7 @@ class ProfileFragment : Fragment(){
             startActivityForResult(Intent(requireActivity(), SignInActivity::class.java), 1)
         }
         requireView().btn_register.setOnClickListener {
-            startActivityForResult(Intent(requireActivity(), SignInActivity::class.java), 2)
+            startActivityForResult(Intent(requireActivity(), SignUpActivity::class.java), 2)
         }
     }
 
@@ -75,9 +88,13 @@ class ProfileFragment : Fragment(){
         }
     }
 
-    private fun handleUser(it : User){
-        requireView().tv_nama.text = it.name
-        requireView().tv_email.text = it.email
+    private fun handleUser(user : User){
+        requireView().tv_email.text = user.email
+        requireView().tv_edit_profile.setOnClickListener {_->
+            startActivity(Intent(requireActivity(), UpdateProfilActivity::class.java).apply {
+                putExtra("USER", user)
+            })
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -88,5 +105,10 @@ class ProfileFragment : Fragment(){
                 finish()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        profileViewModel.fetchProfile("Bearer ${Utilities.getToken(requireActivity())}")
     }
 }

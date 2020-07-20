@@ -23,6 +23,12 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:hint="@string/full_name"
@@ -31,12 +37,14 @@
             app:boxBackgroundColor="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:id="@+id/register_fullName_editText"
                 android:layout_height="wrap_content"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -46,12 +54,14 @@
             app:boxBackgroundColor="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:id="@+id/register_email_editText"
                 android:layout_height="wrap_content"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -61,12 +71,14 @@
             app:boxBackgroundColor="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:inputType="phone"
                 android:maxLines="1"
                 android:id="@+id/register_phone_editText"
                 android:layout_height="wrap_content"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -76,19 +88,23 @@
             app:boxBackgroundColor="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:id="@+id/register_password_editText"
                 android:layout_height="wrap_content"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:text="@string/register"
             app:cornerRadius="@dimen/corner_size_16"
             android:layout_height="?attr/actionBarSize"/>
+
     </LinearLayout>
 
 </ScrollView>

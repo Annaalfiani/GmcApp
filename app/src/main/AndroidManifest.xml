@@ -16,16 +16,17 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".ui.detail_ticket.DetailTicketActivity"></activity>
+        <activity android:name=".ui.update_profil.UpdateProfilActivity"></activity>
+        <activity android:name=".ui.detail_ticket.DetailTicketActivity" />
         <activity
             android:name=".ui.order.OrderActivity"
             android:label="@string/title_activity_order"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".ui.detail_movie.DetailActivity"
             android:label="@string/title_activity_detail_movie"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
-        <activity android:name=".ui.select_seat.SeatActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity android:name=".ui.select_seat.SeatActivity" />
         <activity
             android:name=".ui.main.MainActivity"
             android:label="@string/title_activity_main" />
