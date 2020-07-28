@@ -15,8 +15,8 @@ interface ApiService {
     fun register(
         @Field("name") name: String,
         @Field("email")email : String,
-        @Field("password") password : String,
-        @Field("telp") telp : String
+        @Field("password") password : String
+        //@Field("telp") telp : String
     ): Call<WrappedResponse<User>>
 
     @GET("api/profil")

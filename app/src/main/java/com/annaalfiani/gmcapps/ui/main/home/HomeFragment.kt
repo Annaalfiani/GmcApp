@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import coil.api.load
 import com.annaalfiani.gmcapps.R
 import com.annaalfiani.gmcapps.models.Movie
 import com.annaalfiani.gmcapps.ui.detail_movie.DetailActivity
 import com.annaalfiani.gmcapps.utils.extensions.gone
 import com.annaalfiani.gmcapps.utils.extensions.toast
 import com.annaalfiani.gmcapps.utils.extensions.visible
+import com.synnapps.carouselview.CarouselView
+import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -67,7 +70,15 @@ class HomeFragment : Fragment(R.layout.fragment_home), HomeAdapterInterface {
         }
     }
 
+    private fun setCarouselImage(it : List<Movie>){
+        val imageListener = ImageListener { position, imageView ->
+            imageView.load(it[position].foto) }
+        requireView().carousel_slider.pageCount = it.size
+        requireView().carousel_slider.setImageListener(imageListener)
+     }
+
     private fun handleComingSoonMovies(it : List<Movie>){
+//        setCarouselImage(it)
         requireView().rv_comingsoon.adapter?.let { adapter -> if(adapter is MovieAdapter){
             adapter.updateList(it)
         }}

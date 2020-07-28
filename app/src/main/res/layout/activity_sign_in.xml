@@ -33,6 +33,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:hint="Masukkan username"
+                android:inputType="textEmailAddress"
                 android:id="@+id/et_username"
                 android:layout_height="wrap_content"/>
 
@@ -50,8 +51,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Masukkan password" />
+                android:layout_height="40dp"
+                android:hint="Masukkan password"
+                android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

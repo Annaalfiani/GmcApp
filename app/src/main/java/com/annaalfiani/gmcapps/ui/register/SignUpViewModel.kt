@@ -15,9 +15,9 @@ class SignUpViewModel (private val  userRepository: UserRepository) : ViewModel(
     private fun toast(message: String){ state.value = SignUpState.ShowToast(message) }
     private fun success() { state.value = SignUpState.Success }
 
-    fun register(name : String, email : String, password : String, telp : String){
+    fun register(name : String, email : String, password : String){
         hideLoading()
-        userRepository.register(name, email, password, telp, object : SingleResponse<User>{
+        userRepository.register(name, email, password, object : SingleResponse<User>{
             override fun onSuccess(data: User?) {
                 hideLoading()
                 success()

@@ -46,7 +46,7 @@ class SignUpActivity : AppCompatActivity() {
             val name = register_fullName_editText.text.toString().trim()
             val email = register_email_editText.text.toString().trim()
             val pass = register_password_editText.text.toString().trim()
-            val telp = register_phone_editText.text.toString().trim()
+            //val telp = register_phone_editText.text.toString().trim()
             signUpViewModel.register(name, email, pass,telp)
         }
     }

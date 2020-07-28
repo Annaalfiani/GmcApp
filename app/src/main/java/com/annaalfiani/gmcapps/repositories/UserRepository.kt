@@ -62,8 +62,8 @@ class UserRepository (private val api : ApiService) : UserContract {
         })
     }
 
-    override fun register(name: String, email: String, password: String, telp: String, listener: SingleResponse<User>) {
-        api.register(name, email, password, telp).enqueue(object : Callback<WrappedResponse<User>>{
+    override fun register(name: String, email: String, password: String, listener: SingleResponse<User>) {
+        api.register(name, email, password).enqueue(object : Callback<WrappedResponse<User>>{
             override fun onFailure(call: Call<WrappedResponse<User>>, t: Throwable) {
                 listener.onFailure(Error(t.message))
             }
