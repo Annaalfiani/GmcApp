@@ -48,7 +48,6 @@ class OrderViewModel (private val movieRepo: MovieRepository,
     }
 
     fun fetchProfile(token: String){
-        println(token)
         setLoading()
         userRepository.profile(token, object : SingleResponse<User>{
             override fun onSuccess(data: User?) {
@@ -68,7 +67,9 @@ class OrderViewModel (private val movieRepo: MovieRepository,
         orderRepository.createOrder(token, createOrder, object: SingleResponse<CreateOrder>{
             override fun onSuccess(data: CreateOrder?) {
                 hideLoading()
-                data?.let { successOrder() }
+                data?.let {
+                    successOrder()
+                }
             }
             override fun onFailure(err: Error) {
                 hideLoading()

@@ -64,24 +64,25 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:hint="@string/phone"-->
+<!--            app:errorEnabled="true"-->
+<!--            android:id="@+id/register_phone_inputText"-->
+<!--            app:boxBackgroundColor="@android:color/transparent"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:inputType="phone"-->
+<!--                android:maxLines="1"-->
+<!--                android:id="@+id/register_phone_editText"-->
+<!--                android:layout_height="wrap_content"/>-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
         <com.google.android.material.textfield.TextInputLayout
-            android:hint="@string/phone"
-            app:errorEnabled="true"
-            android:id="@+id/register_phone_inputText"
-            app:boxBackgroundColor="@android:color/transparent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:inputType="phone"
-                android:maxLines="1"
-                android:id="@+id/register_phone_editText"
-                android:layout_height="wrap_content"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+            app:passwordToggleEnabled="true"
             android:hint="@string/password"
             app:errorEnabled="true"
             android:id="@+id/register_password_inputText"

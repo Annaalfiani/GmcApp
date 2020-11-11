@@ -8,11 +8,10 @@ import androidx.lifecycle.Observer
 import coil.api.load
 import com.annaalfiani.gmcapps.R
 import com.annaalfiani.gmcapps.models.Movie
-import com.annaalfiani.gmcapps.ui.detail_movie.DetailActivity
+import com.annaalfiani.gmcapps.ui.detail_film.DetailFilmActivity
 import com.annaalfiani.gmcapps.utils.extensions.gone
 import com.annaalfiani.gmcapps.utils.extensions.toast
 import com.annaalfiani.gmcapps.utils.extensions.visible
-import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,7 +22,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), HomeAdapterInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupUI()
+        setUpRecyclerView()
         observe()
         fetchComingSoonMovies()
         fetchNowPlayingMovies()
@@ -90,7 +89,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), HomeAdapterInterface {
         }}
     }
 
-    private fun setupUI(){
+    private fun setUpRecyclerView(){
         with(requireView()){
             rv_nowplaying.apply {
                 adapter = MovieAdapter(mutableListOf(), this@HomeFragment)
@@ -102,8 +101,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), HomeAdapterInterface {
     }
 
     override fun itemClick(movie: Movie) {
-        requireActivity().startActivity(Intent(requireActivity(), DetailActivity::class.java).apply {
-            putExtra("FILM", movie)
+        requireActivity().startActivity(Intent(requireActivity(), DetailFilmActivity::class.java).apply {
+            putExtra("MOVIE", movie)
         })
     }
 }

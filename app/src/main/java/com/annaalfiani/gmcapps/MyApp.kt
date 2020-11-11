@@ -1,10 +1,8 @@
 package com.annaalfiani.gmcapps
 
 import android.app.Application
-import com.annaalfiani.gmcapps.repositories.MovieRepository
-import com.annaalfiani.gmcapps.repositories.OrderRepository
-import com.annaalfiani.gmcapps.repositories.SeatRepository
-import com.annaalfiani.gmcapps.repositories.UserRepository
+import com.annaalfiani.gmcapps.repositories.*
+import com.annaalfiani.gmcapps.ui.detail_film.DetailFilmViewModel
 import com.annaalfiani.gmcapps.ui.detail_movie.DetailViewModel
 import com.annaalfiani.gmcapps.ui.login.SignInViewModel
 import com.annaalfiani.gmcapps.ui.main.home.HomeViewModel
@@ -40,9 +38,13 @@ val repositoryModule = module {
     factory { SeatRepository(get()) }
     factory { MovieRepository(get()) }
     factory { OrderRepository(get()) }
+    factory { SchedulleRepository(get()) }
 }
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
+    viewModel { DetailFilmViewModel(get()) }
+
+
     viewModel { ProfileViewModel(get()) }
     viewModel { SignInViewModel(get()) }
     viewModel { DetailViewModel(get()) }

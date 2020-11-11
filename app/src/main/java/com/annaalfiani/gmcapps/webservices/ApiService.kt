@@ -1,6 +1,9 @@
 package com.annaalfiani.gmcapps.webservices
 
 import com.annaalfiani.gmcapps.models.*
+import com.annaalfiani.gmcapps.models.v2.Cinema
+import com.annaalfiani.gmcapps.models.v2.Hours
+import com.annaalfiani.gmcapps.models.v2.Schedulle
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -27,8 +30,7 @@ interface ApiService {
     fun updateProfil(
         @Header("Authorization") token : String,
         @Field("name") name: String,
-        @Field("password") password: String,
-        @Field("telp") telp: String
+        @Field("password") password: String
     ) : Call<WrappedResponse<User>>
 
     @GET("api/film")
@@ -42,6 +44,23 @@ interface ApiService {
 
     @GET("api/film/comingsoon")
     fun moviesComingSoon() : Call<WrappedListResponse<Movie>>
+
+    @GET("api/v2/film/{id}/schedulle")
+    fun fetchSchedulle(
+        @Path("id") filmId : Int
+    ) : Call<WrappedListResponse<Schedulle>>
+
+    @FormUrlEncoded
+    @POST("api/v2/schedulle/studio")
+    fun fetchStudios(
+        @Field("date") date : String
+    ) : Call<WrappedListResponse<Cinema>>
+
+    @GET("api/v2/schedulle/{dateId}/{studioId}/hours")
+    fun fetchHours(
+        @Path("dateId") dateId : Int,
+        @Path("studioId") studioId : Int
+    ) : Call<WrappedListResponse<Hours>>
 
     @GET("api/film/{id}/jadwaltayang")
     fun movieSchedules(@Path("id") movieId: String) : Call<WrappedListResponse<MovieSchedule>>

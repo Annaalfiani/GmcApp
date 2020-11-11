@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.content_detail_movie.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity(), DetailMovieInterface {
+
     private val detailViewModel: DetailViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {

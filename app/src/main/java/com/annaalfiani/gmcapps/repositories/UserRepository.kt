@@ -11,8 +11,8 @@ import retrofit2.Response
 interface UserContract {
     fun profile(token: String, listener: SingleResponse<User>)
     fun login(email: String, password: String, listener: SingleResponse<User>)
-    fun register(name : String, email: String, password: String, telp : String, listener: SingleResponse<User>)
-    fun updateProfil(token: String, name: String, password: String, telp: String, listener: SingleResponse<User>)
+    fun register(name : String, email: String, password: String, listener: SingleResponse<User>)
+    fun updateProfil(token: String, name: String, password: String, listener: SingleResponse<User>)
 }
 
 class UserRepository (private val api : ApiService) : UserContract {
@@ -53,10 +53,10 @@ class UserRepository (private val api : ApiService) : UserContract {
                         if(b!!.status){
                             listener.onSuccess(b.data)
                         }else{
-                            listener.onFailure(Error("Kombinasi email dan password salah"))
+                            listener.onFailure(Error("idak dapat login. pastikan email dan password benar dan sudah di verifikasi"))
                         }
                     }
-                    !response.isSuccessful -> listener.onFailure(Error(response.message()))
+                    !response.isSuccessful -> listener.onFailure(Error("masukkan email dan password yang benar"))
                 }
             }
         })
@@ -73,6 +73,7 @@ class UserRepository (private val api : ApiService) : UserContract {
                     response.isSuccessful -> {
                         val body = response.body()
                         if (body?.status!!){
+                            println(body.data)
                             listener.onSuccess(body.data)
                         }else{
                             listener.onFailure(Error(body.message))
@@ -88,10 +89,9 @@ class UserRepository (private val api : ApiService) : UserContract {
         token: String,
         name: String,
         password: String,
-        telp: String,
         listener: SingleResponse<User>
     ) {
-        api.updateProfil(token, name, password, telp).enqueue(object : Callback<WrappedResponse<User>>{
+        api.updateProfil(token, name, password).enqueue(object : Callback<WrappedResponse<User>>{
             override fun onFailure(call: Call<WrappedResponse<User>>, t: Throwable) {
                 listener.onFailure(Error(t.message))
             }

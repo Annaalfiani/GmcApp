@@ -16,7 +16,11 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".ui.update_profil.UpdateProfilActivity"></activity>
+        <activity
+            android:name=".ui.detail_film.DetailFilmActivity"
+            android:label="@string/title_activity_detail_film"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
+        <activity android:name=".ui.update_profil.UpdateProfilActivity" />
         <activity android:name=".ui.detail_ticket.DetailTicketActivity" />
         <activity
             android:name=".ui.order.OrderActivity"

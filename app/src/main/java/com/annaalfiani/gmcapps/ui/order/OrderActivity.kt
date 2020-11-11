@@ -92,10 +92,10 @@ class OrderActivity : AppCompatActivity() {
 
     private fun selectSeatButtonClick(kursi: Kursi){
         order_button_select_seat.setOnClickListener {
-            println("id movie ${getPassedMovie().id.toString()}")
-            println("id hour ${getPassedSchedule().hour.toString()}")
-            println("id date ${getPassedSchedule().date.toString()}")
-            println("id studio ${getPassedSchedule().studio!!.id.toString()}")
+//            println("id movie ${getPassedMovie().id.toString()}")
+//            println("id hour ${getPassedSchedule().hour.toString()}")
+//            println("id date ${getPassedSchedule().date.toString()}")
+//            println("id studio ${getPassedSchedule().studio!!.id.toString()}")
 
             startActivityForResult(Intent(this@OrderActivity, SeatActivity::class.java).apply {
                 putExtra("seat_info", kursi)

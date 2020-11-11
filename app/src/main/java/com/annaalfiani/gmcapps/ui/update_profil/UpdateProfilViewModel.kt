@@ -14,9 +14,9 @@ class UpdateProfilViewModel (private val userRepository: UserRepository) : ViewM
     private fun toast(message: String){ state.value = UpdateProfilState.ShowToast(message) }
     private fun success() { state.value = UpdateProfilState.Success }
 
-    fun updateProfil(token : String, name : String, password : String, telp : String){
+    fun updateProfil(token : String, name : String, password : String){
         setLoading()
-        userRepository.updateProfil(token, name, password, telp, object : SingleResponse<User>{
+        userRepository.updateProfil(token, name, password, object : SingleResponse<User>{
             override fun onSuccess(data: User?) {
                 hideLoading()
                 success()

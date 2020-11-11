@@ -57,15 +57,13 @@ class UpdateProfilActivity : AppCompatActivity() {
             val token  = "Bearer ${Utilities.getToken(this@UpdateProfilActivity)}"
             val name = edit_name.text.toString().trim()
             val pass = editpassword.text.toString().trim()
-            val telp = edit_telp.text.toString().trim()
-            updateProfilViewModel.updateProfil(token!!, name, pass, telp)
+            updateProfilViewModel.updateProfil(token, name, pass)
         }
     }
 
     private fun setUser(){
         getPassedUser()?.let {
             edit_name.setText(it.name)
-            edit_telp.setText(it.telp)
             edit_email.setText(it.email)
         }
     }

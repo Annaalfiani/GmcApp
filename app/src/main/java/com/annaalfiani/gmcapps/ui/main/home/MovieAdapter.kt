@@ -30,7 +30,7 @@ class MovieAdapter (private val movies: MutableList<Movie>, private val homeAdap
             with(itemView){
                 movie_poster.load(movie.foto)
                 movie_title.text = movie.judul
-                movie_genre.text = movie.genre?.let { it } ?: kotlin.run { "Belum ada genre" }
+                movie_genre.text = movie.genre
                 setOnClickListener {
                     homeAdapterInterface.itemClick(movie)
                 }

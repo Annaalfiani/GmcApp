@@ -36,7 +36,6 @@ class ApiCllient {
             }
         }
 
-
         fun instance() = getClient().create(ApiService::class.java)
     }
 }
