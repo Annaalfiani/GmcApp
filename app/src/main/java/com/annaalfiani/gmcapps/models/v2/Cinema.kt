@@ -7,5 +7,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Cinema(
     @SerializedName("id") var id : Int? = null,
+    @SerializedName("date_id") var dateId : Int? = null,
     @SerializedName("nama_studio") var nama : String? = null
 ) : Parcelable

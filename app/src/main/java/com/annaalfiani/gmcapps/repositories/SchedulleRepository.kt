@@ -12,7 +12,7 @@ import retrofit2.Response
 
 interface SchedulleContract{
     fun fetchScedulles(filmId : String, listener : ArrayResponse<Schedulle>)
-    fun fetchStudios(date : String, listener: ArrayResponse<Cinema>)
+    fun fetchStudios(date : String, filmId: String, listener: ArrayResponse<Cinema>)
     fun fetchHours(dateId : String, studioId : String, listener: ArrayResponse<Hours>)
 }
 
@@ -34,8 +34,8 @@ class SchedulleRepository (private val api : ApiService) : SchedulleContract{
         })
     }
 
-    override fun fetchStudios(date: String, listener: ArrayResponse<Cinema>) {
-        api.fetchStudios(date).enqueue(object : Callback<WrappedListResponse<Cinema>>{
+    override fun fetchStudios(date: String, filmId: String, listener: ArrayResponse<Cinema>) {
+        api.fetchStudios(date, filmId.toInt()).enqueue(object : Callback<WrappedListResponse<Cinema>>{
             override fun onFailure(call: Call<WrappedListResponse<Cinema>>, t: Throwable) {
                 listener.onFailure(Error(t.message))
             }

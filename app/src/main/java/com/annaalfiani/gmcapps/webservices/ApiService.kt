@@ -33,16 +33,10 @@ interface ApiService {
         @Field("password") password: String
     ) : Call<WrappedResponse<User>>
 
-    @GET("api/film")
-    fun movies() : Call<WrappedListResponse<Movie>>
-
-    @GET("api/film/{id}")
-    fun movieDetail(@Path("id") movieId: String) : Call<WrappedResponse<Movie>>
-
-    @GET("api/film/nowplaying")
+    @GET("api/v2/film/nowplaying")
     fun moviesNowPlaying() : Call<WrappedListResponse<Movie>>
 
-    @GET("api/film/comingsoon")
+    @GET("api/v2/film/comingsoon")
     fun moviesComingSoon() : Call<WrappedListResponse<Movie>>
 
     @GET("api/v2/film/{id}/schedulle")
@@ -53,7 +47,8 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/v2/schedulle/studio")
     fun fetchStudios(
-        @Field("date") date : String
+        @Field("date") date : String,
+        @Field("filmId") filmId: Int
     ) : Call<WrappedListResponse<Cinema>>
 
     @GET("api/v2/schedulle/{dateId}/{studioId}/hours")
@@ -61,6 +56,15 @@ interface ApiService {
         @Path("dateId") dateId : Int,
         @Path("studioId") studioId : Int
     ) : Call<WrappedListResponse<Hours>>
+
+
+
+
+    @GET("api/film")
+    fun movies() : Call<WrappedListResponse<Movie>>
+
+    @GET("api/film/{id}")
+    fun movieDetail(@Path("id") movieId: String) : Call<WrappedResponse<Movie>>
 
     @GET("api/film/{id}/jadwaltayang")
     fun movieSchedules(@Path("id") movieId: String) : Call<WrappedListResponse<MovieSchedule>>

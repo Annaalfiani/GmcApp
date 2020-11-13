@@ -8,53 +8,92 @@
     tools:context=".ui.detail_film.DetailFilmActivity"
     tools:showIn="@layout/activity_detail_film">
 
-    <RelativeLayout
+    <com.google.android.material.card.MaterialCardView
+        app:cardUseCompatPadding="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="10dp"
-            android:id="@+id/recycler_date"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
 
-        <View
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:id="@+id/divider1"
-            android:layout_below="@id/recycler_date"
-            android:background="@android:color/darker_gray"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"/>
+            <LinearLayout
+                android:id="@+id/linear_detail"
+                android:layout_marginTop="@dimen/margin_size_16"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@id/divider1"
-            android:id="@+id/recycler_studio"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_big"
+                    android:id="@+id/detail_movie_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_size_16" />
 
-        <View
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:id="@+id/divider2"
-            android:layout_below="@id/recycler_studio"
-            android:background="@android:color/darker_gray"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"/>
+                <TextView
+                    android:layout_marginStart="@dimen/margin_size_16"
+                    android:layout_marginEnd="@dimen/margin_size_16"
+                    android:id="@+id/sinopsis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@id/divider2"
-            android:id="@+id/recycler_hour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/detail_movie_genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" />
 
-        <ProgressBar
-            android:layout_centerInParent="true"
-            android:id="@+id/loading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            </LinearLayout>
 
-    </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/linear_detail"
+                android:layout_marginTop="10dp"
+                android:id="@+id/recycler_date"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
+
+            <View
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:id="@+id/divider1"
+                android:layout_below="@id/recycler_date"
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/divider1"
+                android:id="@+id/recycler_studio"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"/>
+
+            <View
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:id="@+id/divider2"
+                android:layout_below="@id/recycler_studio"
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/divider2"
+                android:id="@+id/recycler_hour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ProgressBar
+                android:layout_centerInParent="true"
+                android:id="@+id/loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

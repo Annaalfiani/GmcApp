@@ -33,10 +33,9 @@ class DetailFilmViewModel (private val schedulleRepository: SchedulleRepository)
         })
     }
 
-    fun fetchStudios(date : String){
-        println(date)
+    fun fetchStudios(date : String , filmId: String){
         isLoading(true)
-        schedulleRepository.fetchStudios(date, object : ArrayResponse<Cinema>{
+        schedulleRepository.fetchStudios(date, filmId, object : ArrayResponse<Cinema>{
             override fun onSuccess(datas: List<Cinema>?) {
                 isLoading(false)
                 datas?.let { cinemas.postValue(it) }

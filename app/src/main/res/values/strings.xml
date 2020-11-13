@@ -150,4 +150,6 @@
     <string name="please_login">Untuk dapat melakukan pesanan, anda harus login terlebih dahulu</string>
     <string name="no_seat_selected">Tidak ada kursi yang dipilih</string>
     <string name="title_activity_detail_film">DetailFilmActivity</string>
+    <string name="schedulle">Jadwal</string>
+    <string name="synopsis">Sinopsis</string>
 </resources>

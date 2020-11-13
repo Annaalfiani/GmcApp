@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.api.load
 import com.annaalfiani.gmcapps.R
 import com.annaalfiani.gmcapps.extensions.gone
 import com.annaalfiani.gmcapps.extensions.showToast
@@ -13,7 +14,6 @@ import com.annaalfiani.gmcapps.models.Movie
 import com.annaalfiani.gmcapps.models.v2.Cinema
 import com.annaalfiani.gmcapps.models.v2.Hours
 import com.annaalfiani.gmcapps.models.v2.Schedulle
-
 import kotlinx.android.synthetic.main.activity_detail_film.*
 import kotlinx.android.synthetic.main.content_detail_film.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,6 +28,7 @@ class DetailFilmActivity : AppCompatActivity(), DetailFilmListener {
         setSupportActionBar(toolbar)
         setupToolbar()
         setUpRecycler()
+        setUpDetailMovie()
         observe()
     }
 
@@ -113,25 +114,25 @@ class DetailFilmActivity : AppCompatActivity(), DetailFilmListener {
         if (state) loading.visible() else loading.gone()
     }
 
+    private fun setUpDetailMovie(){
+        getPassedFilm()?.let {
+            detail_movie_img.load(it.foto)
+            detail_movie_title.text = it.judul
+            detail_movie_genre.text = it.genre
+            sinopsis.text = it.sinopsis
+        }
+    }
+
     private fun fetchSchedulles() = detailFilmViewModel.fetchSchedulles(getPassedFilm()?.id.toString())
-    private fun fetchStudios(date: String) = detailFilmViewModel.fetchStudios(date)
-    private fun setDateId(id : String) = detailFilmViewModel.setDateId(id)
-    private fun getDateId() = detailFilmViewModel.getDateId().value
-    private fun fetchHours(studioId : String) = detailFilmViewModel.fetchHours(getDateId()!!, studioId)
+    private fun fetchStudios(date: String) = detailFilmViewModel.fetchStudios(date, getPassedFilm()?.id.toString())
+    private fun fetchHours(dateId : String, studioId : String) = detailFilmViewModel.fetchHours(dateId, studioId)
 
     private fun getPassedFilm() = intent.getParcelableExtra<Movie>("MOVIE")
-
-    override fun clickSchedulle(schedulle: Schedulle) {
-        println("film id ${getPassedFilm()?.id}")
+    override fun clickSchedulle(schedulle: Schedulle){
         fetchStudios(schedulle.date!!)
-        println("tanggal id ${schedulle.id}")
-        setDateId(schedulle.id.toString())
+        recycler_hour.gone()
     }
-
-    override fun clickCinema(cinema: Cinema) {
-        //println(getDateId())
-        fetchHours(cinema.id.toString())
-    }
+    override fun clickCinema(cinema: Cinema) = fetchHours(cinema.dateId.toString(), cinema.id.toString())
 
     override fun onResume() {
         super.onResume()
