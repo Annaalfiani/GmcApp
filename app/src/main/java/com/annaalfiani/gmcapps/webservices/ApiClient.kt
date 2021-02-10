@@ -15,7 +15,7 @@ class ApiCllient {
     //jadi tidak usah instansiate kelas baru unk menggunakannya
     companion object {
         private var retrofit : Retrofit? = null
-        const val ENDPOINT = "https://gmcweb.herokuapp.com/"
+        const val ENDPOINT = "https://gmc.tugas-akhir.com/"
         private var option = OkHttpClient.Builder().apply {
             connectTimeout(30, TimeUnit.SECONDS)
             readTimeout(30, TimeUnit.SECONDS)

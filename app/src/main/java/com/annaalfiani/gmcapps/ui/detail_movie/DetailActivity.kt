@@ -63,9 +63,7 @@ class DetailActivity : AppCompatActivity(), DetailMovieInterface {
     private fun observeState() = detailViewModel.getState().observer(this, Observer { handleState(it) })
     private fun observeMovie() = detailViewModel.getMovie().observe(this, Observer { handleMovie(it) })
 
-    private fun handleMovie(movie: Movie){
-        fill(movie)
-    }
+    private fun handleMovie(movie: Movie) = fill(movie)
 
     private fun handleSchedules(schedules: HashMap<String, List<MovieSchedule>>?){
         schedules?.let {
@@ -98,6 +96,8 @@ class DetailActivity : AppCompatActivity(), DetailMovieInterface {
             loading.gone()
         }
     }
+
+
 
     override fun itemClick(movie: MovieSchedule) {
         Utilities.getToken(this)?.let {

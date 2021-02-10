@@ -43,7 +43,7 @@ class OrderActivity : AppCompatActivity() {
 
     private fun fetchSeats(){
         Utilities.getToken(this)?.let {
-            orderViewModel.fetchSeats(it,
+            orderViewModel.fetchSeats(
                 getPassedMovie()?.id.toString(),
                 getPassedSchedule()?.studio?.id.toString(),
                 getPassedSchedule()?.date.toString(),
@@ -122,7 +122,7 @@ class OrderActivity : AppCompatActivity() {
         }
     }
 
-    private fun createOrder(){
+    private fun createOrder() {
         val token = Utilities.getToken(this@OrderActivity)
         val order = CreateOrder(
             id_studio = getPassedSchedule()?.studio!!.id,

@@ -9,13 +9,14 @@ import com.annaalfiani.gmcapps.R
 import com.annaalfiani.gmcapps.models.v2.Hours
 import kotlinx.android.synthetic.main.item_hour.view.*
 
-class HourAdapter (private var hours : MutableList<Hours>, private var context: Context)
+class HourAdapter (private var hours : MutableList<Hours>, private var detailFilmListener: DetailFilmListener)
     :RecyclerView.Adapter<HourAdapter.ViewHolder>(){
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        fun bind(hour: Hours, context: Context){
+        fun bind(hour: Hours, detailFilmListener: DetailFilmListener){
             with(itemView){
                 txt_hour.text = hour.hour
+                setOnClickListener { detailFilmListener.clickHour(hour) }
             }
         }
     }
@@ -32,6 +33,6 @@ class HourAdapter (private var hours : MutableList<Hours>, private var context: 
 
     override fun getItemCount(): Int = hours.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(hours[position], context)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(hours[position], detailFilmListener)
 
 }

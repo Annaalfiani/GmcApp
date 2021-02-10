@@ -9,6 +9,7 @@ data class Kursi(
     @SerializedName("id") var id : Int? = null,
     @SerializedName("total_rows") var totalRow : Int? = null,
     @SerializedName("total_columns") var totalColumn : Int? = null,
+    @SerializedName("empty_seat") var empty_seat : Int? = null,
     @SerializedName("seats") var seats : List<Seat> = mutableListOf()
 ) : Parcelable
 

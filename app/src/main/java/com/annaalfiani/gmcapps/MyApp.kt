@@ -42,7 +42,7 @@ val repositoryModule = module {
 }
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
-    viewModel { DetailFilmViewModel(get()) }
+    viewModel { DetailFilmViewModel(get(), get(), get(), get()) }
 
 
     viewModel { ProfileViewModel(get()) }

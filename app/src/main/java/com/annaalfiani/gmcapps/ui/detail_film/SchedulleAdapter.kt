@@ -1,9 +1,11 @@
 package com.annaalfiani.gmcapps.ui.detail_film
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.annaalfiani.gmcapps.R
 import com.annaalfiani.gmcapps.models.v2.Schedulle
@@ -16,8 +18,15 @@ class SchedulleAdapter(private var schedulles: MutableList<Schedulle>,
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         fun bind(schedulle: Schedulle, detailFilmListener: DetailFilmListener){
             with(itemView){
+//                val colorGray = ContextCompat.getColor(context, R.color.gray_primary)
+//                bg_item.setBackgroundColor(colorGray)
                 txt_date.text = schedulle.date
-                setOnClickListener { detailFilmListener.clickSchedulle(schedulle) }
+                txt_day.text = schedulle.day
+                setOnClickListener {
+//                    val colorBlue = ContextCompat.getColor(context, R.color.text_light_blue)
+//                    bg_item.setBackgroundColor(colorBlue)
+                    detailFilmListener.clickSchedulle(schedulle)
+                }
             }
         }
     }

@@ -58,6 +58,16 @@ interface ApiService {
     ) : Call<WrappedListResponse<Hours>>
 
 
+    @FormUrlEncoded
+    @POST("api/v2/seat/available")
+    fun availableSeat(
+                      @Field("id_film") movieId: String,
+                      @Field("id_studio") studioId: String,
+                      @Field("tanggal") date : String,
+                      @Field("jam")hour : String)
+            : Call<WrappedResponse<Kursi>>
+
+
 
 
     @GET("api/film")
@@ -69,14 +79,14 @@ interface ApiService {
     @GET("api/film/{id}/jadwaltayang")
     fun movieSchedules(@Path("id") movieId: String) : Call<WrappedListResponse<MovieSchedule>>
 
-    @FormUrlEncoded
-    @POST("api/seat/available")
-    fun availableSeat(@Header("Authorization") token: String,
-                      @Field("id_film") movieId: String,
-                      @Field("id_studio") studioId: String,
-                      @Field("tanggal") date : String,
-                      @Field("jam")hour : String)
-            : Call<WrappedResponse<Kursi>>
+//    @FormUrlEncoded
+//    @POST("api/seat/available")
+//    fun availableSeat(@Header("Authorization") token: String,
+//                      @Field("id_film") movieId: String,
+//                      @Field("id_studio") studioId: String,
+//                      @Field("tanggal") date : String,
+//                      @Field("jam")hour : String)
+//            : Call<WrappedResponse<Kursi>>
 
     @Headers("Content-Type: application/json")
     @POST("api/order")
