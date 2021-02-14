@@ -71,7 +71,7 @@ class SeatActivity : AppCompatActivity() {
         val letterCount = seatActivityViewModel.listenToSeatInfo().value!!.totalRow!!
         val numberSeatCount = seatActivityViewModel.listenToSeatInfo().value!!.totalColumn!!.toInt()
         val seatArray = Array(letterCount) { Array(numberSeatCount) { Seat() } }
-        println("Array size ${seatArray.size}")
+        //println("Array size ${seatArray.size}")
 
         val rowArray = seatActivityViewModel.listenToSeatInfo().value!!.seats
         val transformedData = transformData(seatArray, rowNames, rowArray, letterCount, numberSeatCount)
@@ -91,10 +91,8 @@ class SeatActivity : AppCompatActivity() {
         saveRowNames()
         var x = 0
         for (i in rowArray){
-            println(x)
             val letterPosition = getHashMapKeyByValue(i.nama_kursi.toString().split("-")[1])
             val numberOfSeat = i.nama_kursi.toString().split("-")[0]
-            println(i.status.toString())
             val drawable_res = if (i.status.toString().equals("available")){ "seat_available" }else{ "seat_notavailable"}
             val type_seat = if(i.status.toString().equals("available")) {Seat.TYPE.SELECTABLE} else {Seat.TYPE.UNSELECTABLE}
             val movieSeat = Seat().apply {

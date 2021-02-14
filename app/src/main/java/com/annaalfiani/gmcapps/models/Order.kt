@@ -32,6 +32,7 @@ data class Order(
 @Parcelize
 data class OrderDetails(
     @SerializedName("id") var id : Int? = null,
+    @SerializedName("price") var price : Int? = null,
     @SerializedName("order") var order : Order,
     @SerializedName("kursi") var kursi : Seat
 ) : Parcelable

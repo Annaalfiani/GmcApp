@@ -27,7 +27,7 @@ class DetailTicketActivity : AppCompatActivity() {
             txt_date.text = it.order.tanggal
             txt_hour.text = "${it.order.jam} WIB"
             txt_cinema.text = "${it.order.studio.nama}"
-            txt_harga.text = Utilities.setToIDR(it.order.jadwal.harga!!)
+            txt_harga.text = Utilities.setToIDR(it.price!!)
         }
 
         generateQRCode()

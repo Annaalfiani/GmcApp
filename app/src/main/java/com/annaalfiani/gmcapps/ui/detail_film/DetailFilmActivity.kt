@@ -60,14 +60,18 @@ class DetailFilmActivity : AppCompatActivity(), DetailFilmListener {
     private fun setUpRecyclerViewSchedulles(){
         recycler_date.apply {
             adapter = SchedulleAdapter(mutableListOf(), this@DetailFilmActivity)
-            layoutManager = LinearLayoutManager(this@DetailFilmActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(this@DetailFilmActivity, LinearLayoutManager.HORIZONTAL, true).apply {
+                stackFromEnd = true
+            }
         }
     }
 
     private fun setUpRecyclerViewStudios(){
         recycler_studio.apply {
             adapter = StudioAdapter(mutableListOf(), this@DetailFilmActivity)
-            layoutManager = LinearLayoutManager(this@DetailFilmActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(this@DetailFilmActivity, LinearLayoutManager.HORIZONTAL, true).apply {
+                stackFromEnd = true
+            }
         }
     }
 

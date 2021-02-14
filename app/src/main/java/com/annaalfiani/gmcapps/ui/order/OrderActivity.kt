@@ -92,11 +92,6 @@ class OrderActivity : AppCompatActivity() {
 
     private fun selectSeatButtonClick(kursi: Kursi){
         order_button_select_seat.setOnClickListener {
-//            println("id movie ${getPassedMovie().id.toString()}")
-//            println("id hour ${getPassedSchedule().hour.toString()}")
-//            println("id date ${getPassedSchedule().date.toString()}")
-//            println("id studio ${getPassedSchedule().studio!!.id.toString()}")
-
             startActivityForResult(Intent(this@OrderActivity, SeatActivity::class.java).apply {
                 putExtra("seat_info", kursi)
             }, 89)
@@ -140,20 +135,6 @@ class OrderActivity : AppCompatActivity() {
             val _film = getPassedMovie()?.judul
             midtrans.showPayment(this@OrderActivity, user, _harga!!, restrucutureSeat.count(), _film!!)
         }
-
-//        btn_order.setOnClickListener {
-//            val token = Utilities.getToken(this@OrderActivity)
-//            val order = CreateOrder(
-//                id_studio = getPassedSchedule()?.studio!!.id,
-//                id_film = getPassedMovie()?.id,
-//                id_jadwal_tayang = getPassedSchedule()?.id,
-//                tanggal = getPassedSchedule()?.date,
-//                jam = getPassedSchedule()?.hour,
-//                harga = getPassedSchedule()?.price,
-//                seats = restrucutureSeat
-//            )
-//            orderViewModel.createOrder(token!!, order)
-//        }
     }
 
     private fun getPassedSchedule() = intent.getParcelableExtra<MovieSchedule>("SCHEDULE")
@@ -175,5 +156,10 @@ class OrderActivity : AppCompatActivity() {
             btn_order.isEnabled = true
             createOrder()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getPassedSchedule()
     }
 }
